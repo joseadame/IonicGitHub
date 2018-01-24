@@ -17,11 +17,16 @@ export class ProfileSearchPage {
   
   userName: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private navCtrl: NavController, private navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfileSearchPage');
+  }
+
+  getUserInformation(): void
+  {
+    this.navCtrl.push('ProfileSearchResultsPage')
   }
 
 }
