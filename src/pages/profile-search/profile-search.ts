@@ -26,7 +26,7 @@ export class ProfileSearchPage {
 
   getUserInformation(): void
   {
-    this.navCtrl.push('ProfileSearchResultsPage')
+    this.navCtrl.push('ProfileSearchResultsPage', {'username': this.userName})
   }
 
 }
