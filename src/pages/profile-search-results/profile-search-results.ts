@@ -24,8 +24,9 @@ export class ProfileSearchResultsPage {
   }
 
   getUserInformation(): void {
-    this.gitHubService.mockGetUserInformation(this.username).subscribe((data : User) => this.user = data);
-    this.gitHubService.mockGetRepositoryInformation(this.username).subscribe((data: Repository[]) => this.repositories = data);
+    this.gitHubService.getUserInformation(this.username).subscribe((data: User) => this.user = data);
+    //this.gitHubService.mockGetUserInformation(this.username).subscribe((data : User) => this.user = data);
+    //this.gitHubService.mockGetRepositoryInformation(this.username).subscribe((data: Repository[]) => this.repositories = data);
   } 
 
   ionViewWillLoad() {
