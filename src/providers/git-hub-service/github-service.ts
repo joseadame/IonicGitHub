@@ -1,4 +1,4 @@
-import { Http, Response } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -22,8 +22,9 @@ import { REPOSITORY_LIST } from '../../mocks/repository.mocks';
 export class GitHubServiceProvider {
 
   baseUrl: string = 'https://api.github.com/users';
+  reposUrl: string = 'repos'
 
-  constructor(private http: Http) {
+  constructor(private http: HttpClient) {
     console.log('Hello GitHubServiceProvider Provider');
   }
 
@@ -38,10 +39,11 @@ export class GitHubServiceProvider {
   }
 
   getUserInformation(username: string): Observable<User> {
-    return this.http.get(`${this.baseUrl}/${username}`)
-    .do((data: Response) => console.log(data))
-    .map((data: Response) => data.json())
-    .catch((error: Response) => Observable.throw(error || "server error"));
+    return this.http.get<User>(`${this.baseUrl}/${username}`);
+  }
+
+  getRepositoryInformation(username: string): Observable<Repository[]> {
+    return this.http.get<Repository[]>(`${this.baseUrl}/${username}/${this.reposUrl}`);
   }
 
 }
